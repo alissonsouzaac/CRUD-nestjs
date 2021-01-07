@@ -13,7 +13,7 @@ export class TasksController {
   }
 
   @Get(':id')
-  async getById(@Param('id') id: number): Promise<Tasks> {
+  async getById(@Param('id') id: string): Promise<Tasks> {
     return this.taskService.getById(id);
   }
 
@@ -23,13 +23,12 @@ export class TasksController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: number, @Body() tasks: Tasks): Promise<Tasks> {
-    tasks.id = id;
-    return this.taskService.update(tasks);
+  async update(@Param('id') id: string, @Body() tasks: Tasks): Promise<Tasks> {
+    return this.taskService.update(id, tasks);
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: number) {
+  async delete(@Param('id') id: string) {
     this.taskService.delete(id);
   }
 }
